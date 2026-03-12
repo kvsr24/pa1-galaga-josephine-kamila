@@ -12,7 +12,7 @@ Don't forget that you must also fill out an evaluation form in Moodle to conside
 ## Grading
 
 (802-24-8268) (Josephine M. Vargas) (josephine.vargas1@upr.edu)
-(802-23-4315) (Kamila V. Sanabria Rabelo) (kamila.sanabria1@upr.edu)
+(802-23-4315) (Kamila V. Sanabria) (kamila.sanabria1@upr.edu)
 
 Any project that doesn't compile will receive a 0.
 
