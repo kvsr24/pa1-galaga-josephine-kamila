@@ -92,7 +92,10 @@ void Program::ManageEnemyRespawns() {
 
     respawnCooldown -= 1;
     if (respawnCooldown <= 0) {
-        respawnCooldown = 1080;
+        respawnCooldown = 1080 - score/5;
+        if (respawnCooldown < 300){
+            respawnCooldown = 300;
+        }
         for (std::pair<std::pair<float, float>, Enemy*>& p : Enemy::enemies) {
             if (!p.second && p.first.second != 150) {
                 int eType = GetRandomValue(1, 3);
@@ -147,13 +150,21 @@ void Program::DrawGameOver() {
     DrawText("Game Over", (GetScreenWidth() / 2) - 380, 50, 144, WHITE);
     DrawText("Press Enter", (GetScreenWidth() / 2) - 75, GetScreenHeight() / 2, 24, GRAY);
 }
-
+void Program:: AddScore() {
+    score = score + points;
+    if (score >= 1000 && lives < 5) {
+        lives++;
+        score -= 1000;
+    }
+}
 void Program::KeyInputs() {
     if ((!gameOver && !startup && IsKeyPressed('P')) || (paused && IsKeyPressed(KEY_ENTER))) paused = !paused;
     if (!paused && !startup && IsKeyPressed('O')) gameOver = !gameOver;
     if (!gameOver && !paused && IsKeyPressed('I')) startup = !startup;
     if (IsKeyPressed('H')) HitBox::drawHitbox = !HitBox::drawHitbox;
-    
+    if (isKeyPressed('K')){
+        core += 500;
+    }
     if (gameOver && IsKeyPressed(KEY_ENTER)) {
         gameOver = false;
         Reset();
@@ -166,6 +177,7 @@ void Program::KeyInputs() {
     if (!startup && !paused && !gameOver && pauseFrames <= 0) player->keyInputs();
    
 }
+
 
 void Program::PlayerReset() {
     Animation::animations.push_back(
@@ -188,6 +200,7 @@ void Program::Reset(){
     count = 0;
     delay = 0;
     lives = 3;
+    score = 0;
 
     //add from program()
    Enemy::enemies.push_back(std::pair<std::pair<float, float>, Enemy*> {
