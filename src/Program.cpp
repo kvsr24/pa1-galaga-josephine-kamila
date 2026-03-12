@@ -150,6 +150,9 @@ void Program::DrawGameOver() {
     DrawText("Game Over", (GetScreenWidth() / 2) - 380, 50, 144, WHITE);
     DrawText("Press Enter", (GetScreenWidth() / 2) - 75, GetScreenHeight() / 2, 24, GRAY);
 }
+void Program::DrawScore(){
+    DrawText(TextFormat("Score: %i", score), 20, 20, 24, WHITE);
+}
 void Program:: AddScore() {
     score = score + points;
     if (score >= 1000 && lives < 5) {
