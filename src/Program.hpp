@@ -15,6 +15,8 @@ class Program {
         Player* player = new Player((GetScreenWidth() / 2) - 15, GetScreenHeight() * 0.75f);
         int respawnCooldown = 1080;
         int respawns = 0;
+        int score = 0;
+        int points = 0;
         int count = 0;
         int delay = 0;
         int lives = 3;
@@ -33,9 +35,9 @@ class Program {
         void DrawStartup();
         void DrawPauseScreen();
         void DrawGameOver();
+        void AddScore();
         void KeyInputs();
         void PlayerReset();
         void Reset();
-          
         ~Program() {}
 };
